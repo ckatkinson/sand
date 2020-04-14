@@ -74,7 +74,7 @@ b0 :: Board
 b0 = M.fromList [((0,0), 17)]
 
 b1 :: Board
-b1 = M.fromList [((0,0), 10000)]
+b1 = M.fromList [((0,0), 100000)]
 
 main :: IO ()
 main = makePpm (topple b1) "100k.ppm"
