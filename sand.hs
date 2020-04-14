@@ -1,7 +1,8 @@
 module Main where
 
+import Data.List
 import qualified Data.Map.Strict (Map, (!))
-import Data.Map.Strict as M hiding (foldl, foldr, map)
+import Data.Map.Strict as M hiding (foldl', map)
 import Data.Maybe
 
 type Point = (Int, Int)
@@ -22,7 +23,7 @@ topplePoint b pt
         newGrains neigh = 1 + fromMaybe 0 (neigh `M.lookup` b)
 
 topplePoints :: Board -> [Point] -> Board
-topplePoints = foldl topplePoint
+topplePoints = foldl' topplePoint
 -- topplePoints b [] = b
 -- topplePoints b (p:ps) = topplePoints (topplePoint b p) ps
 
@@ -73,7 +74,7 @@ b0 :: Board
 b0 = M.fromList [((0,0), 17)]
 
 b1 :: Board
-b1 = M.fromList [((0,0), 100000)]
+b1 = M.fromList [((0,0), 10000)]
 
 main :: IO ()
 main = makePpm (topple b1) "100k.ppm"
